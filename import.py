@@ -1,15 +1,11 @@
 import uuid
 
-import jsonlines
 import time
 import llama_cpp
 
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct
 
-from itertools import islice
-from langchain_core.documents import Document
-from dataclasses import dataclass
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 from utils import chunk
@@ -36,12 +32,7 @@ text_splitter = RecursiveCharacterTextSplitter(
     is_separator_regex=False,
 )
 
-# Opción 1: Pasar una lista con el texto completo
 documents = text_splitter.create_documents([text_content])
-
-# Opción 2 (alternativa): Usar split_text directamente
-# chunks = text_splitter.split_text(text_content)
-# documents = [Document(page_content=chunk) for chunk in chunks]
 
 print(f"Number of document chunks: {len(documents)}")
 print(f"First chunk preview: {documents[0].page_content[:100]}...")
@@ -114,9 +105,3 @@ search_result = client.search(
 
 print(f"\nSearch results for query '{search_query}':")
 print(search_result)
-# for i, result in enumerate(search_result):
-#     print(f"\nResult {i+1}:")
-#     print(f"ID: {result.id}")
-#     print(f"Score: {result.score:.4f}")
-#     print(f"Text preview: {result.payload['text']}...")
-#     print(f"Full text length: {len(result.payload['text'])} characters")

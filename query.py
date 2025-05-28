@@ -1,6 +1,5 @@
 import llama_cpp
 from qdrant_client import QdrantClient
-from rich.console import Console
 
 embedding_llm = llama_cpp.Llama(
   model_path="models/models--mixedbread-ai--mxbai-embed-large-v1/snapshots/db9d1fe0f31addb4978201b2bf3e577f3f8900d2/gguf/mxbai-embed-large-v1-f16.gguf", 
