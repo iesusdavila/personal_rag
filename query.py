@@ -11,7 +11,7 @@ client = QdrantClient(path="embeddings")
 
 
 # Search
-search_query = "What is the Ieus Davila email?"
+search_query = "What is the phone and email of Ieus Davila?"
 query_vector = embedding_llm.create_embedding(search_query)['data'][0]['embedding']
 search_result = client.search(
   collection_name="podcast",
